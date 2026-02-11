@@ -35,20 +35,8 @@ config.py stores environment configurations
 app.py runs the application
 
 📂 Project Structure
+<img width="551" height="279" alt="image" src="https://github.com/user-attachments/assets/c2309b22-3e7a-4059-bd10-be677c1b6de2" />
 
-/project
-├── app/
-│   ├── __init__.py          # create_app() lives here
-│   ├── extensions.py        # DB, Marshmallow, JWT, Limiter, Cache
-│   ├── models.py            # SQLAlchemy models
-│   ├── blueprints/
-│   │   └── customers/
-│   │       ├── __init__.py  # Initialize Customer Blueprint
-│   │       ├── routes.py    # Customer routes/controllers
-│   │       └── schemas.py   # Marshmallow schemas
-├── config.py                # App configuration
-├── app.py                   # Entry point
-└── tests/                   # TDD test cases
 
 <img width="1335" alt="image" src="https://github.com/user-attachments/assets/61062899-e0d7-41a4-947c-98324ab93e94" />
 
