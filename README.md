@@ -1,38 +1,4 @@
-Mechanic Shop API – Flask Application Factory Pattern
-A modular, scalable backend API built using Flask, Application Factory Pattern, MySQL, JWT Authentication, Rate Limiting, Caching, Swagger Documentation, and TDD.
-This project demonstrates real‑world backend engineering practices including clean architecture, blueprints, configuration management, API documentation, and automated testing.
 
-📌 About This Project
-This API is designed using the Application Factory Pattern, which allows the application to be created dynamically and configured cleanly.
-It supports:
-
-Modular blueprints
-JWT authentication
-Rate limiting
-Caching
-Pagination
-Query parameters
-Swagger documentation
-TDD (Test‑Driven Development)
-Clean folder structure for scalability
-
-🏗️ Application Factory Pattern
-What is it?
-A design pattern where the application instance is created inside a function (create_app()), allowing dynamic configuration and modular architecture.
-
-Why use it?
-Loosely coupled architecture
-Avoids duplication
-Supports multiple environments (dev, test, prod)
-Easier testing and scaling
-
-How it works
-create_app() initializes the app
-extensions.py registers extensions (DB, Marshmallow, JWT, Limiter, Cache)
-blueprints/ organizes routes
-models.py defines database models
-config.py stores environment configurations
-app.py runs the application
 
 📂 Project Structure
 <img width="551" height="279" alt="image" src="https://github.com/user-attachments/assets/c2309b22-3e7a-4059-bd10-be677c1b6de2" />
@@ -40,106 +6,182 @@ app.py runs the application
 
 <img width="1335" alt="image" src="https://github.com/user-attachments/assets/61062899-e0d7-41a4-947c-98324ab93e94" />
 
+🛠️ Mechanic Shop Advanced API
+A production‑ready RESTful backend service built with Flask, SQLAlchemy, Marshmallow, and MySQL, supporting full CRUD operations for Customers, Mechanics, Service Tickets, and Inventories, with token authentication, Swagger documentation, advanced queries, and automated unit testing.
 
+Code
++----------------+       1        M       +--------------------+
+|   Customers    |------------------------|   Service Tickets  |
++----------------+                        +--------------------+
+| id (PK)        |                        | id (PK)            |
+| name           |                        | customer_id (FK)   |
+| email          |                        | mechanic_id (FK)   |
+| phone          |                        | issue_description  |
++----------------+                        | status             |
+                                          +--------------------+
+                                                   |
+                                                   |
+                                      +---------------------------+
+                                      |   mechanic_services       |
+                                      +---------------------------+
+                                      | mechanic_id (FK)          |
+                                      | service_ticket_id (FK)    |
+                                      +---------------------------+
 
-⏳ Flask-Limiter (Rate Limiting)
-What is it?
-An extension that restricts how many requests a user can make within a time window.
++----------------+       1        M       +--------------------+
+|   Mechanics    |------------------------|    Inventories     |
++----------------+                        +--------------------+
+| id (PK)        |                        | id (PK)            |
+| name           |                        | part_name          |
+| specialization |                        | quantity           |
++----------------+                        +--------------------+
+🚀 Features
+Full CRUD operations for Customers, Mechanics, Service Tickets, and Inventories
 
-Why use it?
-Protects routes from excessive traffic
-Prevents abuse and brute‑force attacks
+Token‑based authentication (JWT)
 
-⚡ Flask-Caching
-What is it?
-Stores frequently accessed data temporarily to improve performance.
+Rate limiting + caching for performance and abuse prevention
 
-Why use it?
-Reduces database load
-Speeds up API responses
-Improves scalability
+Advanced queries: filtering, sorting, pagination
 
-🔐 JWT Authentication
-Used to secure protected routes.
+Many‑to‑many relationships using junction tables with additional fields
 
-Why?
-Ensures only authenticated users can access sensitive endpoints
-Stateless and scalable
+Marshmallow schemas for validation and serialization
 
-🧮 Pagination
-What is it?
-Splits large datasets into smaller pages.
+Swagger UI documentation (OpenAPI YAML)
 
-Why?
-Reduces server load
-Improves performance
-Makes responses more manageable
+Automated unit tests using Python’s unittest
 
-Examples
-Limit & Offset
-https://api.example.com/products?limit=10&offset=20
+Clean Application Factory Pattern with modular blueprints
 
-Page & Page Size
-https://api.example.com/products?page=2&page_size=10
+🛠️ Tech Stack
+Backend: Flask
 
-🔍 Query Parameters
-What are they?
-Key‑value pairs added to a URL after ?.
+ORM: SQLAlchemy
 
-Why use them?
-Filter results without sending JSON payloads
+Validation: Marshmallow
 
-Example:
+Database: MySQL
 
-https://127.0.0.1:5000/mechanics/search?name=ma
+Auth: JWT
 
-📝 Swagger Documentation
-What is it?
-A UI for documenting and testing APIs.
+Documentation: Swagger / OpenAPI
 
-Why use it?
-Developers can test endpoints visually
-Shows request/response examples
-Helps teams understand API behavior
+Testing: unittest
 
-How to enable?
-pip install flask-swagger flask_swagger_ui
-Create:
-/static/swagger.yaml
-To authorize JWT in Swagger
-Click Authorize
-Enter: Bearer <token>
+Tools: Postman
 
-🧪 Test Driven Development (TDD)
-What is it?
-Write tests before writing code.
-
-Why?
-Improves code quality
-Reduces bugs
-Speeds up development
-
-TDD Cycle
-Red – Write failing test
-Green – Write minimal code to pass
-Refactor – Improve code
-
-Run tests
-python -m unittest discover tests
-
-▶️ Running the Project Locally
-1. Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
+📦 Installation & Setup
+1. Clone the repository
+bash
+git clone <your-repo-url>
+cd mechanic-shop-api
+2. Create and activate a virtual environment
+bash
+python -m venv venv
+source venv/bin/activate      # Mac/Linux
+venv\Scripts\activate         # Windows
 3. Install dependencies
-pip install flask flask-sqlalchemy mysql-connector-python
-pip install flask-marshmallow marshmallow-sqlalchemy
-pip install Flask-Limiter Flask-Caching PyJWT
+bash
+pip install -r requirements.txt
+4. Configure your database
+Update your MySQL connection in config.py.
 
-5. Start the server
+5. Run the application
+bash
 python app.py
+📘 API Endpoints
+Customers
+Method	Endpoint	Description
+GET	/customers	Get all customers
+GET	/customers/	Get customer by ID
+POST	/customers	Create customer
+PUT	/customers/	Update customer
+DELETE	/customers/	Delete customer
+Mechanics
+Method	Endpoint	Description
+GET	/mechanics	Get all mechanics
+POST	/mechanics	Create mechanic
+PUT	/mechanics/	Update mechanic
+DELETE	/mechanics/	Delete mechanic
+Service Tickets
+Method	Endpoint	Description
+POST	/tickets	Create service ticket
+GET	/tickets	Get all tickets
+GET	/tickets/	Get ticket by ID
+PUT	/tickets/	Update ticket
+DELETE	/tickets/	Delete ticket
+Inventories
+Method	Endpoint	Description
+GET	/inventory	Get all inventory items
+POST	/inventory	Add inventory item
+PUT	/inventory/	Update inventory
+DELETE	/inventory/	Delete inventory
+📚 Swagger Documentation
+After running the app:
 
-7. Test using Postman or Swagger
-Swagger UI:
-http://127.0.0.1:5000/api/docs
+Code
+http://127.0.0.1:5000/api/docs/
+Swagger loads the OpenAPI file from:
+
+Code
+/application/static/swagger.yaml
+🔐 Authentication
+Protected routes require a valid JWT token:
+
+Code
+Authorization: Bearer <your_token_here>
+Tokens are generated after login.
+
+🧪 Unit Testing
+Run all tests:
+bash
+python -m unittest discover tests
+Run a specific test:
+bash
+python -m unittest tests.test_customers
+Covered modules:
+test_customers.py – Auth + CRUD
+
+test_mechanics.py
+
+test_service_tickets.py
+
+test_inventories.py
+
+📂 Project Structure
+Code
+mechanic-shop-api/
+│
+├── application/
+│   ├── __init__.py               # create_app() – Application Factory
+│   ├── extensions.py             # DB, JWT, caching, rate limiting
+│   │
+│   ├── blueprints/
+│   │   ├── customer/
+│   │   │   ├── __init__.py
+│   │   │   ├── routes.py
+│   │   │   └── schemas.py
+│   │   ├── mechanic/
+│   │   ├── service_ticket/
+│   │   └── inventory/
+│   │
+│   ├── static/
+│   │   └── swagger.yaml
+│   │
+│   ├── utils/
+│   │   └── util.py               # Token helpers
+│   │
+│   └── models.py                 # All SQLAlchemy models
+│
+├── tests/
+│   ├── test_customers.py
+│   ├── test_mechanics.py
+│   ├── test_service_tickets.py
+│   └── test_inventories.py
+│
+├── app.py
+├── config.py
+└── requirements.txt
+
+
