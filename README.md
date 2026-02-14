@@ -44,45 +44,57 @@ Tools: Postman
 
 📦 Installation & Setup
 1. Clone the repository
-bash
-git clone <your-repo-url>
+   (https://github.com/arshaprajesh/MechanicShop-using-python.git)
+   
 cd mechanic-shop-api
-2. Create and activate a virtual environment
-bash
+
+3. Create and activate a virtual environment
+4. 
 python -m venv venv
 source venv/bin/activate      # Mac/Linux
 venv\Scripts\activate         # Windows
-3. Install dependencies
-bash
+
+6. Install dependencies
+   
 pip install -r requirements.txt
-4. Configure your database
+
+6. Configure your database
 Update your MySQL connection in config.py.
 
-5. Run the application
-bash
+7. Run the application
+
 python app.py
+
 📘 API Endpoints
+
 Customers
+
 Method	Endpoint	Description
 GET	/customers	Get all customers
 GET	/customers/	Get customer by ID
 POST	/customers	Create customer
 PUT	/customers/	Update customer
 DELETE	/customers/	Delete customer
+
 Mechanics
+
 Method	Endpoint	Description
 GET	/mechanics	Get all mechanics
 POST	/mechanics	Create mechanic
 PUT	/mechanics/	Update mechanic
 DELETE	/mechanics/	Delete mechanic
+
 Service Tickets
+
 Method	Endpoint	Description
 POST	/tickets	Create service ticket
 GET	/tickets	Get all tickets
 GET	/tickets/	Get ticket by ID
 PUT	/tickets/	Update ticket
 DELETE	/tickets/	Delete ticket
+
 Inventories
+
 Method	Endpoint	Description
 GET	/inventory	Get all inventory items
 POST	/inventory	Add inventory item
