@@ -46,22 +46,22 @@ Tools: Postman
 1. Clone the repository
    (https://github.com/arshaprajesh/MechanicShop-using-python.git)
    
-cd mechanic-shop-api
+2. cd mechanic-shop-api
 
 3. Create and activate a virtual environment
-4. 
+   
 python -m venv venv
 source venv/bin/activate      # Mac/Linux
 venv\Scripts\activate         # Windows
 
-6. Install dependencies
+4. Install dependencies
    
 pip install -r requirements.txt
 
-6. Configure your database
+5. Configure your database
 Update your MySQL connection in config.py.
 
-7. Run the application
+6. Run the application
 
 python app.py
 
